@@ -48,12 +48,11 @@ $(document).ready(function(){
         loop: true
     });
 
-    // Disable right-click context menu
+    // Disable right-click and developer tools
     $(document).on("contextmenu", function(e){
         e.preventDefault();
     });
     
-    // Disable F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+U
     $(document).keydown(function(e){
         if(e.key === "F12" || 
            (e.ctrlKey && e.shiftKey && (e.key === "I" || e.key === "J")) || 
@@ -61,5 +60,38 @@ $(document).ready(function(){
             e.preventDefault();
         }
     });
+
+    // --- NEW PROFESSIONAL FORM HANDLING ---
+    $('#contact-form').on('submit', function(e) {
+        e.preventDefault(); // Stop the default redirect
+
+        var $form = $(this);
+        var $button = $form.find('button[type="submit"]');
+        var $status = $('#form-status');
+
+        // Show a loading state on the button
+        $button.text('Sending...').prop('disabled', true);
+        $status.html(''); // Clear previous status
+
+        // Send the form data using AJAX
+        $.ajax({
+            url: $form.attr('action'),
+            method: $form.attr('method'),
+            data: $form.serialize(),
+            dataType: 'json',
+            success: function() {
+                // This is the success message
+                $form.hide(); // Hide the form
+                $status.html('<div class="success-message"><i class="fas fa-check-circle"></i> Thank you! Your message has been sent.</div>');
+            },
+            error: function() {
+                // This is the error message
+                $status.html('<div class="error-message">Oops! Something went wrong. Please try again.</div>');
+                $button.text('Send message').prop('disabled', false); // Re-enable the button
+            }
+        });
+    });
+    // --- END OF NEW FORM HANDLING ---
+
 });
 

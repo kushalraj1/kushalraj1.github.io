@@ -173,7 +173,8 @@
                 </div>
                 <div class="column right">
                     <div class="text">Message me</div>
-                    <form action="https://formspree.io/f/xpworldd" method="POST">
+                    <!-- CHANGE 1: id="contact-form" has been added -->
+                    <form id="contact-form" action="https://formspree.io/f/xpworldd" method="POST">
                         <div class="fields">
                             <div class="field name">
                                 <input type="text" name="name" placeholder="Name" required>
@@ -192,6 +193,8 @@
                             <button type="submit" class="btn-primary">Send message</button>
                         </div>
                     </form>
+                    <!-- CHANGE 2: This new div has been added -->
+                    <div id="form-status"></div>
                 </div>
             </div>
         </div>
