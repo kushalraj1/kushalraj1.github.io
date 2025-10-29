@@ -35,39 +35,31 @@ $(document).ready(function(){
 
     // typing text animation script
     var typed = new Typed(".typing", {
-        strings: ["Ethical Hacker", "Developer", "Blogger", "Pentester", "Freelancer"],
+        strings: ["Cybersecurity & AI", "Intelligent Systems", "Big Data Analytics"],
         typeSpeed: 100,
         backSpeed: 60,
         loop: true
     });
 
     var typed = new Typed(".typing-2", {
-        strings: ["Ethical Hacker", "Developer", "Blogger", "Pentester", "Freelancer"],
+        strings: ["Cybersecurity & AI", "Offensive Security", "Data-Driven Defense"],
         typeSpeed: 100,
         backSpeed: 60,
         loop: true
     });
 
-    // owl carousel script
-    $('.carousel').owlCarousel({
-        margin: 20,
-        loop: true,
-        autoplay: true,
-        autoplayTimeOut: 2000,
-        autoplayHoverPause: true,
-        responsive: {
-            0:{
-                items: 1,
-                nav: false
-            },
-            600:{
-                items: 2,
-                nav: false
-            },
-            1000:{
-                items: 3,
-                nav: false
-            }
+    // Disable right-click context menu
+    $(document).on("contextmenu", function(e){
+        e.preventDefault();
+    });
+    
+    // Disable F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+U
+    $(document).keydown(function(e){
+        if(e.key === "F12" || 
+           (e.ctrlKey && e.shiftKey && (e.key === "I" || e.key === "J")) || 
+           (e.ctrlKey && e.key === "U")) {
+            e.preventDefault();
         }
     });
 });
+
